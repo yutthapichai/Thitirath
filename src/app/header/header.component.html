@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <span>Thitirath</span>
+  <span class="example-fill-remaining-space"></span>
+  <ul>
+    <li>
+      <a mat-button>Pomotion</a>
+    </li>
+    <li>
+      <a mat-button>Gallery</a>
+    </li>
+    <li>
+      <a mat-button>Contact us</a>
+    </li>
+    <li>
+      <a mat-button>Login</a>
+    </li>
+  </ul>
+  <button mat-button [matMenuTriggerFor]="menu">Menu group</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Pomotion</button>
+  <button mat-menu-item>Gallery</button>
+  <button mat-menu-item>Time table</button>
+  <button mat-menu-item>Contact us</button>
+</mat-menu>
+</mat-toolbar>
