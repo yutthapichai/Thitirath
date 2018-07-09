@@ -1,25 +1,38 @@
-<mat-toolbar color="primary">
-  <span>Thitirath</span>
+<mat-toolbar class="mat-body-1 w3-teal">
+  <span>Thitirath Spa</span>
   <span class="example-fill-remaining-space"></span>
+  <div class="w3-hide-large w3-hide-medium">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>dashboard</mat-icon> Menu group
+    </button>
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item><mat-icon class="w3-text-teal">comment</mat-icon>Pomotion</a>
+      <a mat-menu-item><mat-icon class="w3-text-teal">video_library</mat-icon>Gallery</a>
+      <a mat-menu-item><mat-icon class="w3-text-teal">view_list</mat-icon>Time table</a>
+      <a mat-menu-item><mat-icon class="w3-text-teal">contacts</mat-icon>Contact us</a>
+      <a mat-menu-item><mat-icon class="w3-text-teal">assignment_ind</mat-icon>Login</a>
+    </mat-menu>
+  </div>
   <ul>
-    <li>
-      <a mat-button>Pomotion</a>
+    <li class="w3-hide-small">
+      <a mat-button>
+        <mat-icon>comment</mat-icon> Pomotion
+      </a>
     </li>
-    <li>
-      <a mat-button>Gallery</a>
+    <li class="w3-hide-small">
+      <a mat-button>
+        <mat-icon>video_library</mat-icon> Gallery
+      </a>
     </li>
-    <li>
-      <a mat-button>Contact us</a>
+    <li class="w3-hide-small">
+      <a mat-button>
+        <mat-icon>contacts</mat-icon> Contact us
+      </a>
     </li>
-    <li>
-      <a mat-button>Login</a>
+    <li class="w3-hide-small">
+      <a mat-button>
+        <mat-icon>assignment_ind</mat-icon> Login
+      </a>
     </li>
   </ul>
-  <button mat-button [matMenuTriggerFor]="menu">Menu group</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>Pomotion</button>
-  <button mat-menu-item>Gallery</button>
-  <button mat-menu-item>Time table</button>
-  <button mat-menu-item>Contact us</button>
-</mat-menu>
 </mat-toolbar>
