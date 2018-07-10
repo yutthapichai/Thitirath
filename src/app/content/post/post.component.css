@@ -1,14 +1,14 @@
-.example-fill-remaining-space {
-  flex: 1 1 auto;
+mat-form-field {
+  width: 100%;
 }
-ul {
-  list-style: none;
-  padding: 0;
-  margin:0 ;
-  display: flex;
+
+input[type="file"] {
+  visibility: hidden;
 }
-a {
-  text-decoration: none;
+
+.rightpic {
+  text-align:right;
+  padding:0;
 }
 
 .barradiun {

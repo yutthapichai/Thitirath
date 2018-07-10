@@ -6,12 +6,18 @@ import { AngularMaterialModule } from './angular-material.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
+import { PostComponent } from './content/post/post.component';
+import { BookComponent } from './content/book/book.component';
+import { MenulistComponent } from './content/menu/menu-list/menu-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ContentComponent
+    ContentComponent,
+    PostComponent,
+    BookComponent,
+    MenulistComponent
   ],
   imports: [
     BrowserModule,

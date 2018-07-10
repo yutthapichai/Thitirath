@@ -1,0 +1,43 @@
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="w3-dropdown-hover" style="background:none;">
+         {{element.name}}
+        <div class="w3-dropdown-content w3-card-4 w3-dark-gray" style="width:250px;">
+          <img src="../../../../assets/image/bb.jpg" alt="{{ element.name }}" style="width:100%">
+          <div class="w3-container">
+            <h5> {{ element.name }}</h5>
+            <p>Stream / Jacuzzi / Swimming poll Tamarind Skin Exfoliation with thai Herbs Thai “White Mud” Body Wrap Aromatherapy Body Massage Facial Treatment Shampoo</p>
+          </div>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> 60 hour</th>
+    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> 90 hour</th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-card class="w3-section" class="rightpic">
+  <a mat-button routerLink="/create" routerLinkActive="mat-accent" color="warn">New Post</a>
+</mat-card>

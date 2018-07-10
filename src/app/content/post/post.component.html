@@ -1,0 +1,20 @@
+<mat-card class="w3-margin-top">
+  <form method="post">
+    <h4 class="w3-text-grey">Post ประชาสัมพันธ์</h4>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Favorite food">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Leave a comment" rows="3"></textarea>
+    </mat-form-field>
+    <button mat-stroked-button type="button" (click)="filePicker.click()" class="w3-text-teal">
+      <mat-icon>camera_enhance</mat-icon> Image
+    </button>
+    <input type="file" #filePicker (change)="onImagePicked($event)">
+    <div class="w3-section" class="rightpic">
+      <button mat-raised-button type="submit" class="barradiun w3-text-white w3-hover-opacity">
+        <mat-icon>save_alt</mat-icon> Save Post
+      </button>
+    </div>
+  </form>
+</mat-card>

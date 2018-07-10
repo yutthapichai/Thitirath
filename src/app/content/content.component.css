@@ -1,0 +1,6 @@
+.barradiun {
+  background:
+    radial-gradient(circle at 1.98% 3%,#00bca4,transparent 100%),
+    radial-gradient(circle at 98.02% 98%,#56B4D3,transparent 100%),
+    radial-gradient(circle at 50% 50%,#668cc2,#668cc2 100%);
+}

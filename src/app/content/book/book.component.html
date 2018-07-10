@@ -1,0 +1,80 @@
+<mat-card class="w3-margin-bottom">
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel><span class="w3-hide-small">Select package or treatment</span></ng-template>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Select Time">
+            <mat-option value="10.00">10.00 am</mat-option>
+            <mat-option value="11.00">11.00 am</mat-option>
+            <mat-option value="13.00">13.00 pm</mat-option>
+            <mat-option value="20.00">20.00 pm</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Select Massage">
+            <mat-option value="10.00">Aroma Massage</mat-option>
+            <mat-option value="11.00">Face Massage</mat-option>
+            <mat-option value="13.00">Foot Massage</mat-option>
+            <mat-option value="20.00">Herbal ball compress</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext color="warn">
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel><span class="w3-hide-small">Fill out your details</span></ng-template>
+        <mat-form-field>
+          <input matInput placeholder="SSN">
+          <mat-icon matSuffix>credit_card</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Firstname">
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Lastname">
+          <mat-icon matSuffix>supervisor_account</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Tel">
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email">
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment" rows="3"></textarea>
+          <mat-icon matSuffix>textsms</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel><span class="w3-hide-small">Done</span></ng-template>
+      <p>Date : 18 กรกฎาคม 2561</p>
+      <p>Time : 11.00 Hrs.</p>
+      <p>Guest : Foot Massage</p>
+      <p>All cost : 337.05 THB.</p>
+      <p>Detail : Stream / Jacuzzi / Swimming poll Tamarind Skin Exfoliation with thai Herbs Thai “White Mud” Body Wrap Aromatherapy Body Massage Facial Treatment Shampoo</p>
+      <div>
+        <button mat-button matStepperPrevious>Confirm</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

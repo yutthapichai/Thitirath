@@ -4,7 +4,14 @@ import {
   MatMenuModule,
   MatButtonModule,
   MatIconModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatInputModule,
+  MatCardModule,
+  MatStepperModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  MatTableModule
  } from '@angular/material';
 
 @NgModule({
@@ -13,7 +20,14 @@ import {
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatInputModule,
+    MatCardModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatTableModule
   ]
 })
 export class AngularMaterialModule {}
