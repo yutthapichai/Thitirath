@@ -4,25 +4,35 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { ContentComponent } from './content/content.component';
-import { PostComponent } from './content/post/post.component';
+import { PostcreateComponent } from './content/post/post-create/post-create.component';
 import { BookComponent } from './content/book/book.component';
 import { MenulistComponent } from './content/menu/menu-list/menu-list.component';
+import { MenucreateComponent } from './content/menu/menu-create/menu-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
     ContentComponent,
-    PostComponent,
+    PostcreateComponent,
     BookComponent,
-    MenulistComponent
+    MenulistComponent,
+    LoginComponent,
+    SignupComponent,
+    MenucreateComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

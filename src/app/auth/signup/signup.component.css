@@ -1,0 +1,9 @@
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+main {
+  max-width: 500px;
+  margin:auto;
+}
