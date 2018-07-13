@@ -1,24 +1,26 @@
 <main>
   <div class="w3-margin-top w3-container">
     <mat-card>
-      <form>
+      <form (submit)="Signup(signupForm)" #signupForm="ngForm">
         <mat-form-field>
-          <input matInput name="email" type="text" placeholder="Firstname" required>
-          <mat-error>Pease enter a valid email</mat-error>
+          <input matInput ngModel #firstname="ngModel" name="firstname" type="text" placeholder="Firstname" required firstname>
+          <mat-error *ngIf="firstname.invalid">Pease enter a valid firstname</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput name="email" type="text" placeholder="Lastname" required>
-          <mat-error>Pease enter a valid email</mat-error>
+          <input matInput ngModel #lastname="ngModel" name="lastname" type="text" placeholder="Lastname" required lastname>
+          <mat-error *ngIf="lastname.invalid">Pease enter a valid lastname</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput name="email" type="email" placeholder="E-mail" required email>
-          <mat-error>Pease enter a valid email</mat-error>
+          <input matInput ngModel #email="ngModel" name="email" type="email" placeholder="E-mail" required email>
+          <mat-error *ngIf="email.invalid">Pease enter a valid email</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput name="password" type="password" placeholder="password">
-          <mat-error>Pease enter a valid password</mat-error>
+          <input matInput ngModel #password="ngModel" name="password" type="password" placeholder="password" required password>
+          <mat-error *ngIf="password.invalid">Pease enter a valid password</mat-error>
         </mat-form-field>
-        <button mat-raised-button color="accent" type="submit">Signup</button>
+        <div class="w3-section" class="rightpic">
+          <button mat-raised-button color="accent" type="submit">Signup</button>
+        </div>
       </form>
     </mat-card>
   </div>

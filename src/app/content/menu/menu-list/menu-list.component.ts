@@ -21,7 +21,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './menu-list.component.html',
   styleUrls: ['./menu-list.component.css']
 })
-export class MenulistComponent implements OnInit{
+export class MenulistComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 

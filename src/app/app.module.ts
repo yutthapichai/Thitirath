@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
+import { FormsModule } from '../../node_modules/@angular/forms';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +16,8 @@ import { PostcreateComponent } from './content/post/post-create/post-create.comp
 import { BookComponent } from './content/book/book.component';
 import { MenulistComponent } from './content/menu/menu-list/menu-list.component';
 import { MenucreateComponent } from './content/menu/menu-create/menu-create.component';
+
+
 
 @NgModule({
   declarations: [
@@ -32,9 +36,11 @@ import { MenucreateComponent } from './content/menu/menu-create/menu-create.comp
     BrowserModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
