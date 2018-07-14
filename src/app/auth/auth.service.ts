@@ -21,15 +21,15 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getAuth() {
+  public getAuth() {
     return this.Authenticated;
   }
 
-  getAuthStatusListener() {
+  public getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
 
-  login(email: string, password: string) {
+  public login(email: string, password: string) {
     const AuthLogin: Authlogin = {
       email: email,
       password: password
@@ -54,7 +54,7 @@ export class AuthService {
     );
   }
 
-  signup(firstname: string, lastname: string, email: string, password: string) {
+  public signup(firstname: string, lastname: string, email: string, password: string) {
     const AuthSignup: Authsignup = {
       firstname: firstname,
       lastname: lastname,
@@ -66,7 +66,7 @@ export class AuthService {
     );
   }
 
-  logout() {
+  public logout() {
     this.token  = null;
     this.userId = null;
     this.Authenticated = false;

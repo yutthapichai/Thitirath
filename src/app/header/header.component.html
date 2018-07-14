@@ -1,23 +1,33 @@
 <mat-toolbar class="mat-body-1 barradiun w3-text-white">
-  <span><a routerLink="/"><mat-icon class="w3-hide-small">spa</mat-icon> Thitirath Spa</a></span>
+  <span>
+    <a routerLink="/">
+      <mat-icon class="w3-hide-small">spa</mat-icon> Thitirath Spa</a>
+  </span>
   <span class="example-fill-remaining-space"></span>
   <div class="w3-hide-large w3-hide-medium">
     <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon>dashboard</mat-icon> Menu group
     </button>
     <mat-menu #menu="matMenu">
-      <a mat-menu-item *ngIf="Authenticated"><mat-icon class="w3-text-teal">comment</mat-icon>Pomotion</a>
-      <a mat-menu-item *ngIf="Authenticated"><mat-icon class="w3-text-teal">video_library</mat-icon>Gallery</a>
-      <a mat-menu-item *ngIf="Authenticated"><mat-icon class="w3-text-teal">view_list</mat-icon>Time table</a>
-      <a mat-menu-item *ngIf="Authenticated"><mat-icon class="w3-text-teal">contacts</mat-icon>Contact us</a>
+      <a mat-menu-item *ngIf="Authenticated">
+        <mat-icon class="w3-text-teal">comment</mat-icon>Pomotion</a>
+      <a mat-menu-item *ngIf="Authenticated">
+        <mat-icon class="w3-text-teal">video_library</mat-icon>Gallery</a>
+      <a mat-menu-item *ngIf="Authenticated">
+        <mat-icon class="w3-text-teal">view_list</mat-icon>Time table</a>
+      <a mat-menu-item *ngIf="Authenticated">
+        <mat-icon class="w3-text-teal">contacts</mat-icon>Contact us</a>
       <hr *ngIf="Authenticated">
-      <a mat-menu-item routerLink="/menucreate" routerLinkActive="mat-accent" *ngIf="Authenticated">
+      <a mat-menu-item routerLink="/menucreate" *ngIf="Authenticated">
         <mat-icon class="w3-text-teal">queue</mat-icon>Create Menu
       </a>
-      <a mat-menu-item routerLink="/signup" routerLinkActive="mat-accent" *ngIf="Authenticated">
+      <a mat-menu-item routerLink="" *ngIf="Authenticated">
+        <mat-icon class="w3-text-teal">perm_data_setting</mat-icon>Manage user
+      </a>
+      <a mat-menu-item routerLink="/signup" *ngIf="!Authenticated">
         <mat-icon class="w3-text-teal">assignment</mat-icon>Sign up
       </a>
-      <a mat-menu-item routerLink="/login" routerLinkActive="mat-accent" *ngIf="!Authenticated">
+      <a mat-menu-item routerLink="/login" *ngIf="!Authenticated">
         <mat-icon class="w3-text-teal">assignment_ind</mat-icon>Login
       </a>
       <a mat-menu-item (click)="logout()" *ngIf="Authenticated">
@@ -31,12 +41,17 @@
         <mat-icon>queue</mat-icon> Create Menu
       </a>
     </li>
+    <li class="w3-hide-small" *ngIf="Authenticated">
+      <a mat-button routerLinkActive="mat-primary">
+        <mat-icon>perm_data_setting</mat-icon> Manage user
+      </a>
+    </li>
     <li class="w3-hide-small" *ngIf="!Authenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-primary">
         <mat-icon>assignment_ind</mat-icon> Login
       </a>
     </li>
-    <li class="w3-hide-small" *ngIf="Authenticated">
+    <li class="w3-hide-small" *ngIf="!Authenticated">
       <a mat-button routerLink="/signup" routerLinkActive="mat-primary">
         <mat-icon>assignment</mat-icon> Sign up
       </a>

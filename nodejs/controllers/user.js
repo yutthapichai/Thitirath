@@ -5,10 +5,10 @@ const User = require("../models/user");
 
 exports.userlogin = (req, res, next) => {
   let fetchuser;
-  User.findOne({ email: req.body.email }).then(
+  User.findOne({ email: req.body.email, useractive: 1 }).then(
     user => {
       if(!user){ // user is table data model
-        res.status(401).json({ message: "Don't have an email" });
+        res.status(401).json({ message: "Don't have an email, please contact Admin" });
       }else{
         fetchuser = user;
         return bcrypt.compare(req.body.password, user.password);
@@ -46,7 +46,8 @@ exports.UserSignup = (req, res, next) => {
               firstname: req.body.firstname,
               lastname: req.body.lastname,
               email: req.body.email,
-              password: hash
+              password: hash,
+              useractive: 0
              });
             user.save().then(
               result => {
