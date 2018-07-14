@@ -1,16 +1,18 @@
 <main>
   <div class="w3-margin-top w3-container">
     <mat-card>
-      <form>
+      <form (submit)="login(loginid)" #loginid="ngForm">
         <mat-form-field>
-          <input matInput name="email" type="email" placeholder="E-mail" required email>
-          <mat-error>Pease enter a valid email</mat-error>
+          <input matInput ngModel #idemail="ngModel" name="email" type="email" placeholder="E-mail" required idemail>
+          <mat-error *ngIf="idemail.invalid">Pease enter a valid email</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput name="password" type="password" placeholder="password">
-          <mat-error>Pease enter a valid password</mat-error>
+          <input matInput ngModel #idpasswoed="ngModel" name="password" type="password" placeholder="password" required idpassword>
+          <mat-error *ngIf="idpasswoed.invalid">Pease enter a valid password</mat-error>
         </mat-form-field>
-        <button mat-raised-button color="warn" type="submit">login</button>
+        <div class="w3-section" class="rightpic">
+          <button mat-raised-button color="warn" type="submit">login</button>
+        </div>
       </form>
     </mat-card>
   </div>

@@ -4,3 +4,8 @@ export interface Authsignup {
   email:     string;
   password:  string;
 }
+
+export interface Authlogin {
+  email:    string;
+  password: string;
+}
