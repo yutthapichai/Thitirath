@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { FormsModule } from '../../node_modules/@angular/forms';
-import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '../../node_modules/@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,8 @@ import { PostcreateComponent } from './content/post/post-create/post-create.comp
 import { BookComponent } from './content/book/book.component';
 import { MenulistComponent } from './content/menu/menu-list/menu-list.component';
 import { MenucreateComponent } from './content/menu/menu-create/menu-create.component';
+import { ErrorComponent } from './error/error.component';
+import { ErrorInterceptor } from './error-intercep';
 
 
 
@@ -30,7 +32,8 @@ import { MenucreateComponent } from './content/menu/menu-create/menu-create.comp
     MenulistComponent,
     LoginComponent,
     SignupComponent,
-    MenucreateComponent
+    MenucreateComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,10 @@ import { MenucreateComponent } from './content/menu/menu-create/menu-create.comp
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule {}

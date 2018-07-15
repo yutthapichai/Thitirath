@@ -14,10 +14,13 @@ exports.userlogin = (req, res, next) => {
         return bcrypt.compare(req.body.password, user.password);
       }
     }
+    // Err_http_Header sent is have error sent to back than more a one to cmd
   ).then(
     result => {
       if (!result) { // result is boolean
-        res.status(401).json({ message: "password don't match"});
+        if (result !== undefined) {
+          res.status(401).json({ message: "Password don't match" });
+        }
       } else {
         const token = jwt.sign(
           { email:fetchuser.email, userId: fetchuser._id},
@@ -30,6 +33,10 @@ exports.userlogin = (req, res, next) => {
           userId: fetchuser._id
         });
       }
+    }
+  ).catch(
+    err => {
+      res.status(500).json({ message: "Error " + err });
     }
   );
 }
@@ -57,6 +64,10 @@ exports.UserSignup = (req, res, next) => {
           }
         );
        }
+    }
+  ).catch(
+    err => {
+      res.status(500).json({ message: "Error " + err });
     }
   );
 };
