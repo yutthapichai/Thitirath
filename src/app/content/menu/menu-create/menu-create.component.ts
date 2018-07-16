@@ -16,11 +16,11 @@ export class MenucreateComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      name: new FormControl(null, { validators: [Validators.required] }),
-      min60: new FormControl(null, { validators: [Validators.required]}),
-      min90: new FormControl(null, { validators: [Validators.required]}),
-      detail: new FormControl(null, { validators: [Validators.required]}),
-      image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType]})
+      name:   new FormControl(null, { validators: [Validators.required] }),
+      min60:  new FormControl(null, { validators: [Validators.required] }),
+      min90:  new FormControl(null, { validators: [Validators.required] }),
+      detail: new FormControl(null, { validators: [Validators.required] }),
+      image:  new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
     });
   }
 
@@ -44,7 +44,7 @@ export class MenucreateComponent implements OnInit {
         this.form.value.detail,
         this.form.value.image
       );
-      this.form.reset();
+      // this.form.reset();
     }
   }
 

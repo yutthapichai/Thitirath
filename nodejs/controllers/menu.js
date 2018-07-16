@@ -13,11 +13,42 @@ exports.addMenu = (req, res, next) => {
 
   menu.save().then(
     result => {
-      console.log(result);
       res.status(201).json({
         message: "Menu massage add success",
-        menumassage: { iddd: result._id, ...result }
+        menu: { id: result._id, ...result }
       });
+    }
+  ).catch(
+    err => {
+      res.status(500).json({ message: "Create menu fail!" });
+    }
+  );
+}
+
+exports.fetchMenu = (req, res, next) => {
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const menuQuery = MenuTable.findOne();
+  let fetchedMenu;
+  if (pageSize && currentPage) {
+    menuQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+  }
+  menuQuery.find().then(
+    data => {
+      fetchedMenu = data;
+      return MenuTable.countDocuments();
+    }
+  ).then(
+    count => {
+      res.status(200).json({
+        message: "fetch menu success",
+        menues: fetchedMenu,
+        maxMenu: count
+      });
+    }
+  ).catch(
+    err => {
+      res.status(500).json({ message: "Fetch menu failed!"});
     }
   );
 }

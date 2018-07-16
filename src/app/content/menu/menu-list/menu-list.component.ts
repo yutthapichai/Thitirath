@@ -1,33 +1,49 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: number;
-}
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { PageEvent } from '@angular/material';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Thai oil massage', weight: 15, symbol: 60},
-  {position: 2, name: 'Thai Massage and Rice berry ball compress', weight: 15, symbol: 60},
-  {position: 3, name: 'Foot Massage', weight: 15, symbol: 60},
-  {position: 4, name: 'Neck Shoulder Massage', weight: 15, symbol: 60},
-  {position: 5, name: 'Aroma Massage', weight: 15, symbol: 60},
-  {position: 6, name: 'Face Massage', weight: 15, symbol: 60},
-  {position: 7, name: 'Herbal ball compress', weight: 15, symbol: 60},
-];
+import { Menu } from '../menu.models';
+import { MenuService } from '../menu.service';
+
+
+
+
 @Component({
   selector: 'app-menulist',
   templateUrl: './menu-list.component.html',
   styleUrls: ['./menu-list.component.css']
 })
-export class MenulistComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class MenulistComponent implements OnInit, OnDestroy {
+  private menuSubscip: Subscription;
+  public menues: Menu[] = [];
+  public totalMenu = 0;
+  public menuPerpage = 5;
+  public currentPage = 1;
+  public pageSize = [1, 5, 10, 20, 100];
 
-  @ViewChild(MatSort) sort: MatSort;
+  displayedColumns: string[] = ['position', 'name', 'min60', 'min90'];
+  dataSource = this.menues;
+
+  constructor(private objectMenuService: MenuService) {}
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
+    this.objectMenuService.fetchmenu(this.menuPerpage, this.currentPage);
+    this.menuSubscip = this.objectMenuService.getMenuUpdateListener().subscribe(
+      (menuData: { menues: Menu[]; menucount: number }) => {
+        this.totalMenu = menuData.menucount;
+        this.menues = menuData.menues;
+      }
+    );
   }
+
+  ngOnDestroy() {
+    this.menuSubscip.unsubscribe();
+  }
+
+  onChangedPage(pageData: PageEvent) {
+    this.currentPage = pageData.pageIndex + 1;
+    this.menuPerpage = pageData.pageSize;
+    this.objectMenuService.fetchmenu(this.menuPerpage, this.currentPage);
+  }
+
 }

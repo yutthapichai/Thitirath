@@ -2,12 +2,14 @@ const express = require('express')
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose =require("mongoose");
+const path = require("path");
 
 const userRoutes = require("./routes/user");
 const menuRoutes = require("./routes/munu");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/images", express.static(path.join("nodejs/images")));
 
 mongoose
   .connect(
