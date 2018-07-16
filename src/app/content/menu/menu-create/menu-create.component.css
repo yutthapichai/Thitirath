@@ -30,3 +30,12 @@ table {
 th.mat-sort-header-sorted {
   color: black;
 }
+
+.image-preview {
+  height: 5rem;
+  margin: 2rem 0;
+}
+
+.image-preview img {
+  height:100%;
+}

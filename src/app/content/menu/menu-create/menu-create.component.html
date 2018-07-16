@@ -1,73 +1,46 @@
 <div class="w3-row-padding">
   <div class="w3-container w3-third">
     <mat-card class="w3-margin-top">
-      <form method="post">
+      <form [formGroup]="form" (submit)="onsaveMenu()">
         <h4 class="w3-text-grey">Menu Massage</h4>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Name massage">
+          <input matInput type="text" formControlName="name" placeholder="Name massage">
+          <mat-error *ngIf="form.get('name').invalid">Pease enter Name massage</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Amount 60 hour" type="number" class="rightpic">
+          <input matInput placeholder="Amount 60 hour" type="number" formControlName="min60" class="rightpic">
           <span matPrefix>$&nbsp;</span>
           <span matSuffix>.00</span>
+          <mat-error *ngIf="form.get('min60').invalid">Pease enter Cost 60 min massage</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Amount 90 hour" type="number" class="rightpic">
+          <input matInput placeholder="Amount 90 hour" type="number" formControlName="min90" class="rightpic">
           <span matPrefix>$&nbsp;</span>
           <span matSuffix>.00</span>
+          <mat-error *ngIf="form.get('min90').invalid">Pease enter Cost 90 min massage</mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Leave a comment" rows="3"></textarea>
+          <textarea matInput formControlName="detail" placeholder="Leave a comment" rows="3"></textarea>
+          <mat-error *ngIf="form.get('detail').invalid">Pease enter Detail massage</mat-error>
         </mat-form-field>
+        <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+          <img [src]="imagePreview" [alt]="form.value.name">
+        </div>
         <button mat-stroked-button type="button" (click)="filePicker.click()" class="w3-text-teal">
-      <mat-icon>camera_enhance</mat-icon> Image
-    </button>
-        <input type="file" #filePicker (change)="onImagePicked($event)">
+          <mat-icon>camera_enhance</mat-icon> Image
+        </button>
+        <input type="file" #filePicker (change)="onImagePickd($event)">
         <div class="w3-section" class="rightpic">
           <button mat-raised-button type="submit" class="barradiun w3-text-white w3-hover-opacity">
-        <mat-icon>save_alt</mat-icon> Save Post
-      </button>
+            <mat-icon>save_alt</mat-icon> Save Post
+          </button>
         </div>
       </form>
     </mat-card>
   </div>
 
 
-  <div class="w3-container w3-twothird w3-margin-bottom">
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 w3-margin-top">
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let element">
-          <div class="w3-dropdown-hover" style="background:none;">
-            {{element.name}}
-            <div class="w3-dropdown-content w3-card-4 w3-dark-gray" style="width:250px;">
-              <img src="../../../../assets/image/bb.jpg" alt="{{ element.name }}" style="width:100%">
-              <div class="w3-container">
-                <h5> {{ element.name }}</h5>
-                <p>Stream / Jacuzzi / Swimming poll Tamarind Skin Exfoliation with thai Herbs Thai “White Mud” Body Wrap Aromatherapy Body Massage Facial Treatment Shampoo</p>
-              </div>
-            </div>
-          </div>
-        </td>
-      </ng-container>
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> 60 hour</th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-      </ng-container>
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> 90 hour</th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+  <div class="w3-container w3-twothird w3-margin-bottom w3-margin-top">
+    <app-menulist></app-menulist>
   </div>
 </div>

@@ -1,6 +1,6 @@
-import { Injectable } from '../../node_modules/@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '../../node_modules/@angular/common/http';
-import { MatDialog } from '../../node_modules/@angular/material';
+import { Injectable } from '@angular/core';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ErrorComponent } from './error/error.component';

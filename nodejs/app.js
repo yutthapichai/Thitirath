@@ -4,11 +4,16 @@ const bodyParser = require("body-parser");
 const mongoose =require("mongoose");
 
 const userRoutes = require("./routes/user");
+const menuRoutes = require("./routes/munu");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-mongoose.connect("mongodb://localhost:27017/tritirath")
+mongoose
+  .connect(
+    "mongodb://localhost:27017/tritirath",
+    { useNewUrlParser: true }
+  )
   .then(() => {
     console.warn("Connected to database");
   })
@@ -30,5 +35,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/user", userRoutes);
+app.use("/api/menu", menuRoutes);
 
 module.exports = app;

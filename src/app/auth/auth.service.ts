@@ -21,6 +21,10 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+ public getToken() {
+   return this.token;
+ }
+
   public getAuth() {
     return this.Authenticated;
   }
