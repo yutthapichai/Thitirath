@@ -44,7 +44,7 @@ export class MenucreateComponent implements OnInit {
         this.form.value.detail,
         this.form.value.image
       );
-      // this.form.reset();
+      this.form.reset();
     }
   }
 

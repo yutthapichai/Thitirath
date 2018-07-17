@@ -2,6 +2,7 @@ const MenuTable = require('../models/menu');
 
 exports.addMenu = (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
+  let fetchresult;
   const menu = new MenuTable({
     name: req.body.name,
     min60: req.body.min60,
@@ -12,10 +13,20 @@ exports.addMenu = (req, res, next) => {
   });
 
   menu.save().then(
+    data => {
+      fetchresult = data;
+      return MenuTable.countDocuments();
+    }
+  ).then(
     result => {
       res.status(201).json({
         message: "Menu massage add success",
-        menu: { id: result._id, ...result }
+        maxcount: result,
+        menu: {
+          id: fetchresult._id,
+          imagePath: fetchresult.imagePath,
+          creator: fetchresult.creator
+        }
       });
     }
   ).catch(

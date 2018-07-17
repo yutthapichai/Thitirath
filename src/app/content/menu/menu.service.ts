@@ -24,7 +24,7 @@ export class MenuService {
     this.http.get<{ message: string; menues: any; maxMenu: number }>(Backend_url + menuPerpage).pipe(
       map(
         menuData => {
-          console.log(menuData.message);
+          // console.log(menuData.message);
           return {
             menues: menuData.menues.map(
               menu => {
@@ -62,10 +62,10 @@ export class MenuService {
     menuData.append('detail', detail);
     menuData.append('image', image, name);
 
-    this.http.post<{ message: string, menu: Menu}>( Backend_url, menuData).subscribe(
+    this.http.post<{ message: string, menu: Menu, maxcount: number }>( Backend_url, menuData).subscribe(
       Response => {
-        console.log(Response.menu);
-        const menu: Menu = {
+        // console.log(Response.message);
+        const menus: Menu = {
           id: Response.menu.id,
           name: name,
           min60: min60,
@@ -74,8 +74,8 @@ export class MenuService {
           imagePath: Response.menu.imagePath,
           creator: Response.menu.creator
         };
-        this.menu.push(menu);
-        this.menuUpdated.next({ menues: [...this.menu], menucount: null });
+        this.menu.push(menus);
+        this.menuUpdated.next({ menues: [...this.menu], menucount: Response.maxcount });
       }
     );
   }
