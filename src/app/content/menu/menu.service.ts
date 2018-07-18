@@ -75,7 +75,23 @@ export class MenuService {
           creator: Response.menu.creator
         };
         this.menu.push(menus);
-        this.menuUpdated.next({ menues: [...this.menu], menucount: Response.maxcount });
+        this.menuUpdated.next({
+          menues: [...this.menu],
+          menucount: Response.maxcount
+        });
+      }
+    );
+  }
+
+  public deletemenu(menuId: string) {
+    this.http.delete<{ message: string, maxMenu: number}>(Backend_url + menuId).subscribe(
+      Response => {
+        const updateMenues = this.menu.filter(menu => menu.id !== menuId);
+        this.menu = updateMenues;
+        this.menuUpdated.next({
+          menues: [...this.menu],
+          menucount: Response.maxMenu
+        });
       }
     );
   }

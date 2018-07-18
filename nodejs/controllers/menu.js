@@ -63,3 +63,25 @@ exports.fetchMenu = (req, res, next) => {
     }
   );
 }
+
+exports.deleteMenu = (req, res, next) => {
+  let resultdelete;
+  MenuTable.deleteOne({ _id: req.params.id}).then(
+    data => {
+      resultdelete = data;
+      return MenuTable.countDocuments();
+    }
+  ).then(
+    result => {
+      if(resultdelete.n > 0) {
+        res.status(200).json({ message: 'Delete success', maxMenu: result });
+      }else{
+        res.status(401).json({ message: 'Not authorized!'});
+      }
+    }
+  ).catch(
+    err => {
+      res.status(500).json({ message: 'Could not delete menu!'});
+    }
+  );
+}

@@ -57,4 +57,8 @@ export class MenulistComponent implements OnInit, OnDestroy {
     this.objectMenuService.fetchmenu(this.menuPerpage, this.currentPage);
   }
 
+  onDelete(menuId: string) {
+    this.objectMenuService.deletemenu(menuId);
+  }
+
 }

@@ -22,7 +22,7 @@
               <button mat-button [routerLink]="" class="w3-text-gray w3-hover-text-green">
                 <mat-icon>edit</mat-icon>edit
               </button>
-              <button mat-button class="w3-right w3-text-gray w3-hover-text-red">
+              <button mat-button (click)="onDelete(element.id)" class="w3-right w3-text-gray w3-hover-text-red">
                 <mat-icon>delete</mat-icon>delete
               </button>
               </div>
