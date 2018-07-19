@@ -7,6 +7,7 @@ const extractFile = require('../middleware/file');
 
 router.post('', checkAuth, extractFile, MenuControler.addMenu);
 router.get('', MenuControler.fetchMenu);
-router.delete('/:id',checkAuth,MenuControler.deleteMenu);
+router.delete('/:id', checkAuth,MenuControler.deleteMenu);
+router.get('/:id', MenuControler.editMenu);
 
 module.exports = router;

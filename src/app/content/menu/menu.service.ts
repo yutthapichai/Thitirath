@@ -96,6 +96,18 @@ export class MenuService {
     );
   }
 
+  public editmenu(id: string) {
+    return this.http.get<{
+      _id: string,
+      name: string,
+      min60: number,
+      min90: number,
+      detail: string,
+      imagePath: string,
+      creator: string
+    }>(Backend_url + id);
+  }
+
   public getMenuUpdateListener() {
     return this.menuUpdated.asObservable();
   }

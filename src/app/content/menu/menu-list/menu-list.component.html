@@ -19,7 +19,7 @@
               <h5>{{ element.name }}</h5>
               <p>{{ element.detail }}</p>
               <div class="w3-margin-bottom" *ngIf="Authenticated && UserId === element.creator">
-              <button mat-button [routerLink]="" class="w3-text-gray w3-hover-text-green">
+              <button mat-button (click)="requireEdit(element.id)" class="w3-text-gray w3-hover-text-green">
                 <mat-icon>edit</mat-icon>edit
               </button>
               <button mat-button (click)="onDelete(element.id)" class="w3-right w3-text-gray w3-hover-text-red">

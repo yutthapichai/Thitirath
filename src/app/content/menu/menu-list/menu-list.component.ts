@@ -5,8 +5,7 @@ import { PageEvent } from '@angular/material';
 import { Menu } from '../menu.models';
 import { MenuService } from '../menu.service';
 import { AuthService } from '../../../auth/auth.service';
-
-
+import { MenucreateComponent } from '../menu-create/menu-create.component';
 
 
 @Component({
@@ -14,12 +13,16 @@ import { AuthService } from '../../../auth/auth.service';
   templateUrl: './menu-list.component.html',
   styleUrls: ['./menu-list.component.css']
 })
+
+
 export class MenulistComponent implements OnInit, OnDestroy {
   private menuSubscrip: Subscription;
   private authSubscrip: Subscription;
   public menues: Menu[] = [];
   public Authenticated: boolean;
   public UserId: string;
+  public menuId: string;
+  public mode = 'create';
   public totalMenu   = 0;
   public menuPerpage = 5;
   public currentPage = 1;
@@ -28,7 +31,11 @@ export class MenulistComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['position', 'name', 'min60', 'min90'];
   dataSource = this.menues;
 
-  constructor(private objectMenuService: MenuService, private objectAuthService: AuthService) {}
+  constructor(
+    private objectMenuService: MenuService,
+    private objectAuthService: AuthService,
+    private objectMenuCreate: MenucreateComponent
+  ) {}
 
   ngOnInit() {
     this.UserId        = this.objectAuthService.getUserId();
@@ -49,6 +56,7 @@ export class MenulistComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.menuSubscrip.unsubscribe();
+    this.authSubscrip.unsubscribe();
   }
 
   onChangedPage(pageData: PageEvent) {
@@ -57,8 +65,14 @@ export class MenulistComponent implements OnInit, OnDestroy {
     this.objectMenuService.fetchmenu(this.menuPerpage, this.currentPage);
   }
 
+  requireEdit(menuId: string) {
+    this.objectMenuCreate.onEdit(menuId);
+  }
+
   onDelete(menuId: string) {
-    this.objectMenuService.deletemenu(menuId);
+    if (confirm('Are you sure !!')) {
+      this.objectMenuService.deletemenu(menuId);
+    }
   }
 
 }

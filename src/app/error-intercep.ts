@@ -14,7 +14,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError(
         (error: HttpErrorResponse) => {
-          let errorMassage = 'An unkhown error na';
+          let errorMassage = 'An unkhown error na or Server responsive';
           if (error.error.message) {
             errorMassage = error.error.message;
           }
