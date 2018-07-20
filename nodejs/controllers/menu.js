@@ -101,3 +101,34 @@ exports.editMenu = (req, res, next) => {
     }
   );
 }
+
+exports.updateMenu = (req, res, next) => {
+  let ImagePath = req.body.imagePath;
+  if (req.file) {
+    //new image
+    const url = req.protocol + '://' + req.get('host');
+    ImagePath = url + '/images/' + req.file.filename;
+  }
+  const menu = new MenuTable({
+    _id: req.body.id,
+    name: req.body.name,
+    min60: req.body.min60,
+    min90: req.body.min90,
+    detail: req.body.detail,
+    imagePath: ImagePath,
+    creator: req.userData.userId
+  });
+  MenuTable.updateOne({ _id: req.params.id }, menu).then(
+    result => {
+      if(result.n > 0) {
+        res.status(200).json({ message: 'Update success'});
+      } else {
+        res.status(401).json({ message: 'Not authorizad!'});
+      }
+    }
+  ).catch(
+    err => {
+      res.status(500).json({ message: 'Could not update Menu' + err});
+    }
+  );
+}

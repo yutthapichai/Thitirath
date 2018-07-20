@@ -9,5 +9,6 @@ router.post('', checkAuth, extractFile, MenuControler.addMenu);
 router.get('', MenuControler.fetchMenu);
 router.delete('/:id', checkAuth,MenuControler.deleteMenu);
 router.get('/:id', MenuControler.editMenu);
+router.put('/:id', checkAuth, extractFile, MenuControler.updateMenu);
 
 module.exports = router;

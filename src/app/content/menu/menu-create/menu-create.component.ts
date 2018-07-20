@@ -1,8 +1,11 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
 import { MenuService } from '../menu.service';
 import { mimeType } from '../../mime.type.validator';
 import { Menu } from '../menu.models';
+
 
 @Injectable({ providedIn: 'root' })
 
@@ -14,11 +17,16 @@ export class MenucreateComponent implements OnInit {
 
   public form: FormGroup;
   public imagePreview: string;
-  public mode = 'Create';
+  public mode: string;
   public menu: Menu;
   public menuId: string;
+  public menuCreator: string;
+  public saveMenu = 'Save Menu';
 
-  constructor(private objectMenuService: MenuService) {}
+  constructor(
+    private objectMenuService: MenuService,
+    private router: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -28,6 +36,39 @@ export class MenucreateComponent implements OnInit {
       detail: new FormControl(null, { validators: [Validators.required] }),
       image:  new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
     });
+    this.router.paramMap.subscribe(
+      (paramMap: ParamMap) => {
+        if (paramMap.has('menuID')) {
+          this.mode = 'edit';
+          this.saveMenu = 'Update Menu';
+          this.menuId = paramMap.get('menuID');
+          this.objectMenuService.editmenu(this.menuId).subscribe(
+            Response => {
+              this.menuCreator = Response.creator;
+              this.menu = {
+                id: Response._id,
+                name: Response.name,
+                min60: Response.min60,
+                min90: Response.min90,
+                detail: Response.detail,
+                imagePath: Response.imagePath,
+                creator: Response.creator
+              };
+              this.form.setValue({
+                name: this.menu.name,
+                min60: this.menu.min60,
+                min90: this.menu.min90,
+                detail: this.menu.detail,
+                image: this.menu.imagePath
+              });
+            }
+          );
+        } else {
+          this.mode = 'Create';
+          this.menuId = null;
+        }
+      }
+    );
   }
 
   public onImagePickd() {
@@ -52,15 +93,26 @@ export class MenucreateComponent implements OnInit {
           this.form.value.image
         );
         this.form.reset();
+      } else {
+        this.objectMenuService.updatemenu(
+          this.menuId,
+          this.form.value.name,
+          this.form.value.min60,
+          this.form.value.min90,
+          this.form.value.detail,
+          this.form.value.image,
+          this.menuCreator
+        );
+        this.form.reset();
       }
     }
   }
-
+  /*
   public onEdit(menuId: string) {
     this.objectMenuService.editmenu(menuId).subscribe(
       Response => {
-        console.log(Response);
         this.menuId = Response._id;
+        this.menuCreator = Response.creator;
         this.mode = 'Edit';
         this.menu = {
           id: Response._id,
@@ -80,6 +132,6 @@ export class MenucreateComponent implements OnInit {
         });
       }
     );
-  }
+  }*/
 
 }

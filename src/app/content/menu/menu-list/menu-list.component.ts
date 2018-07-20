@@ -64,11 +64,11 @@ export class MenulistComponent implements OnInit, OnDestroy {
     this.menuPerpage = pageData.pageSize;
     this.objectMenuService.fetchmenu(this.menuPerpage, this.currentPage);
   }
-
+  /*
   requireEdit(menuId: string) {
     this.objectMenuCreate.onEdit(menuId);
   }
-
+  */
   onDelete(menuId: string) {
     if (confirm('Are you sure !!')) {
       this.objectMenuService.deletemenu(menuId);

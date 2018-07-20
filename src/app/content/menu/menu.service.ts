@@ -14,6 +14,7 @@ const Backend_url = environment.apiUrl + '/menu/';
 
 export class MenuService {
 
+  private countMenu: number;
   private menu: Menu[] = [];
   private menuUpdated = new Subject<{ menues: Menu[], menucount: number }>();
 
@@ -45,6 +46,7 @@ export class MenuService {
       )
     ).subscribe(
       subMenuData => {
+        this.countMenu = subMenuData.maxmenues;
         this.menu = subMenuData.menues;
         this.menuUpdated.next({
           menues: [...this.menu],
@@ -106,6 +108,53 @@ export class MenuService {
       imagePath: string,
       creator: string
     }>(Backend_url + id);
+  }
+
+  public updatemenu(id: string, name: string, min60: any, min90: any, detail: string, image: File | string, creator: string) {
+    let menuData: Menu | FormData;
+    if (typeof(image) === 'object') {
+      menuData = new FormData();
+      menuData.append('id', id);
+      menuData.append('name', name);
+      menuData.append('min60', min60);
+      menuData.append('min90', min90);
+      menuData.append('detail', detail);
+      menuData.append('image', image, name);
+      menuData.append('creator', creator);
+    } else {
+      menuData = {
+        id: id,
+        name: name,
+        min60: min60,
+        min90: min90,
+        detail: detail,
+        imagePath: image,
+        creator: creator
+      };
+      this.http.put(Backend_url + id, menuData).subscribe(
+        () => {
+          this.router.navigate(['/menucreate']); /* sent data to server 2 times
+          console.log(Response);
+          const Updatemenues = [...this.menu];
+          const oldMenukey = Updatemenues.findIndex( menu => menu.id === id);
+          const menubox: Menu = {
+            id: id,
+            name: name,
+            min60: min60,
+            min90: min90,
+            detail: detail,
+            imagePath: image,
+            creator: creator
+          };
+          Updatemenues[oldMenukey] = menubox;
+          this.menu = Updatemenues;
+          this.menuUpdated.next({
+            menues: [...this.menu],
+            menucount: this.countMenu
+          }); */
+        }
+      );
+    }
   }
 
   public getMenuUpdateListener() {
