@@ -19,6 +19,7 @@ import { MenucreateComponent } from './content/menu/menu-create/menu-create.comp
 import { ErrorComponent } from './error/error.component';
 import { ErrorInterceptor } from './error-intercep';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { PostlistComponent } from './content/post/post-list/post-list.component';
 
 
 
@@ -31,6 +32,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     PostcreateComponent,
     BookComponent,
     MenulistComponent,
+    PostlistComponent,
     LoginComponent,
     SignupComponent,
     MenucreateComponent,

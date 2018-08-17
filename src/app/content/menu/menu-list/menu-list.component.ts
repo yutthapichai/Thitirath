@@ -5,7 +5,6 @@ import { PageEvent } from '@angular/material';
 import { Menu } from '../menu.models';
 import { MenuService } from '../menu.service';
 import { AuthService } from '../../../auth/auth.service';
-import { MenucreateComponent } from '../menu-create/menu-create.component';
 
 
 @Component({
@@ -33,8 +32,7 @@ export class MenulistComponent implements OnInit, OnDestroy {
 
   constructor(
     private objectMenuService: MenuService,
-    private objectAuthService: AuthService,
-    private objectMenuCreate: MenucreateComponent
+    private objectAuthService: AuthService
   ) {}
 
   ngOnInit() {

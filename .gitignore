@@ -2,6 +2,7 @@
 
 # server
 /nodejs/images
+/nodejs/config
 # compiled output
 /dist
 /tmp

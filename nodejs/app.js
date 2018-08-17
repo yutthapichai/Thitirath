@@ -2,10 +2,12 @@ const express = require('express')
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose =require("mongoose");
-const path = require("path");
+const path = require("path"); //about ipload image
 
 const userRoutes = require("./routes/user");
 const menuRoutes = require("./routes/munu");
+const postRoutes = require("./routes/post");
+const DB = require('./config/keys').mongoURI
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -13,7 +15,7 @@ app.use("/images", express.static(path.join("nodejs/images")));
 
 mongoose
   .connect(
-    "mongodb://localhost:27017/tritirath",
+    DB,
     { useNewUrlParser: true }
   )
   .then(() => {
@@ -38,5 +40,5 @@ app.use((req, res, next) => {
 
 app.use("/api/user", userRoutes);
 app.use("/api/menu", menuRoutes);
-
+app.use("/api/post", postRoutes);
 module.exports = app;

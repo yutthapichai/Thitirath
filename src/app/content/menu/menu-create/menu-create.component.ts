@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -7,7 +7,6 @@ import { mimeType } from '../../mime.type.validator';
 import { Menu } from '../menu.models';
 
 
-@Injectable({ providedIn: 'root' })
 
 @Component({
   templateUrl: './menu-create.component.html',
